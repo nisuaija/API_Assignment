@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  api:
+    image: ${DOCKER_REGISTRY-}api
+    container_name: books.api
+    build:
+      context: .
+      dockerfile: API/Dockerfile
+    ports:
+        - "8080:8080"
+        - "8081:8081"
+
+  products.database:
+    image: postgres:latest
+    container_name: books.database
+    environment:
+        - POSTGRES_DB=books
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+    volumes:
+        - ./.containers/books-api:/var/lib/postgresql/data
+    ports:
+        - 5432:5432
