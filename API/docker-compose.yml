@@ -19,6 +19,6 @@ services:
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=postgres
     volumes:
-        - ./.containers/books-api:/var/lib/postgresql/data
+        - /.containers/books-api:/var/lib/postgresql/data
     ports:
         - 5432:5432
